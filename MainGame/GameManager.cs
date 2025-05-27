@@ -1,27 +1,28 @@
 using UnityEngine;
-public class GameManager  : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public static GameManager = Instance;
+    public static GameManager Instance;
     public GemProgressionSystem gemSystem;
     public int score = 0;
-    public health = 100;
-    public scoreText;
-    public healtText;
-}
+    public int health = 100;
+    public UnityEngine.UI.Text scoreText;
+    public UnityEngine.UI.Text healthText;
 
-void Awake()
-{
-    Instance = this
-}
+    void Awake()
+    {
+        Instance = this;
+    }
 
-public void AddScore(int value)
-{
-    AddScore += value;
-    scoreText = "Gems" + AddScore;
-}
+    public void AddScore(int value)
+    {
+        AddScore += value;
+        scoreText = "Gems" + AddScore;
+    }
 
-public void TakeDamage (int damage)
-{
-    health  -= damage;
-    healthText = "Health" + health
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        healthText = "Health" + health;
+    }
+
 }

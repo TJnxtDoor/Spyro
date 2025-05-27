@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
         transform.Translate(movement);
 
         //Jump
-        if(Input,GetButtonDown("Jump") && isGrounded) 
+        if (Input.GetButtonDown("Jump") && isGrounded);
         {
             rb.AddForce(Vector3.up * jumpForce. ForceMode.Impulse);
             isGrounded = false;
@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision,gameObject.CompareTag("Ground"))
+        if(collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
         }

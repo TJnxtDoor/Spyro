@@ -79,11 +79,11 @@ public class SkinManager : MonoBehaviour
 public class CollectableSkin : MonoBehaviour
 {
     // Previous variables...
-    
+
     [SerializeField] private Light collectLight;
     [SerializeField] private float rotationSpeed = 45f;
     [SerializeField] private float floatAmplitude = 0.5f;
-    
+
     private Vector3 startPos;
     private bool isCollected = false;
 
@@ -107,7 +107,7 @@ public class CollectableSkin : MonoBehaviour
     {
         isCollected = true;
         SkinManager.Instance.UnlockSkin(skinIndex);
-        
+
         // Play attached effects
         if (collectEffect != null)
         {
@@ -131,3 +131,4 @@ public class CollectableSkin : MonoBehaviour
         GetComponent<Collider>().enabled = false;
         Destroy(gameObject, 3f); // Allow time for effects to finish
     }
+}

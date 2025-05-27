@@ -1,55 +1,63 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PauseMenu : MonoBehaviour
+namespace Spyro.MainGame
 {
-    public static bool GameIsPaused = false;
-    public GameObject pauseMeunuUI;
-    public AudioSoruce backgroundMusic;
-    public Slider VolumeSlider;
-
-    void Start()
+    public class PauseMenu : MonoBehaviour
     {
-        //volume slider if it exist
-        if(VolumeSlider != null)
-        {
-            VolumeSlider.value = PlayerPrefs.GetFLoat("MusicVolume", 0.6f);
-            backgroundMusic.volume = VolumeSlider.value;
-        }
-    }
+        public static bool GameIsPaused = false;
+        public GameObject pauseMenuUI;
+        public AudioSource backgroundMusic;
+        public Slider VolumeSlider;
 
-
-    void(Update)
-    {
-        if(Input,GetDownKey(KeyCode.Escape))
+        void Start()
         {
-            if (GameIsPaused)
+            // volume slider if it exists
+            if (VolumeSlider != null)
             {
-                Resume() 
-            }
-            else
-            {
-                Pause();
+                VolumeSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.6f);
+                backgroundMusic.volume = VolumeSlider.value;
             }
         }
-        
-    }
 
-    Puse void Resume()
-    {
-        pauseMeunuUI.SetActive(true);
-        Time.timeScale = 0f;
-        GameIsPaused.Pause();
-    }
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (GameIsPaused)
+                {
+                    Resume();
+                }
+                else
+                {
+                    Pause();
+                }
+            }
+        }
 
-    public void SetVolume(float volume)
-    {
-        backgroundMusic.volume = volume;
-        PlayerPrefts.SetFloat("Music Volume", volume)
-    }
+        public void Resume()
+        {
+            pauseMenuUI.SetActive(false);
+            Time.timeScale = 1f;
+            GameIsPaused = false;
+        }
 
-    public void QuitGame()
-    {
-        Applicatiob.Quit();
+        public void Pause()
+        {
+            pauseMenuUI.SetActive(true);
+            Time.timeScale = 0f;
+            GameIsPaused = true;
+        }
+
+        public void SetVolume(float volume)
+        {
+            backgroundMusic.volume = volume;
+            PlayerPrefs.SetFloat("MusicVolume", volume);
+        }
+
+        public void QuitGame()
+        {
+            Application.Quit();
+        }
     }
 }
