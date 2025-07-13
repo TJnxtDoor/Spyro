@@ -33,39 +33,40 @@ public class AdvancedEnemyAI : MonoBehaviour
     public LayerMask obstacleMask;
     private HealthSystem healthSystem;
 
-    void Start()
-
-    private void Start()
-        {
-        ApplyDifficultyModifiers();
-
-        }
-
-   // AdvancedEnemyAI.cs updates
-public class AdvancedEnemyAI : MonoBehaviour
+private void Start()
 {
-    private void Start()
-    {
-        ApplyDifficultyModifiers();
-    }
+    // Find player by tag or assign in inspector as needed
+    GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+    if (playerObj != null)
+        player = playerObj.transform;
 
-    private void ApplyDifficultyModifiers()
+    healthSystem = GetComponent<HealthSystem>();
+
+    ApplyDifficultyModifiers();
+
+    // Start in patrol state
+    currentState = EnemyState.Patrol;
+}
+
+private void ApplyDifficultyModifiers()
+{
+    if (GameManager.Instance != null)
     {
         DifficultySettings diff = GameManager.Instance.difficultySettings;
-        
+
         patrolSpeed *= diff.enemySpeedMultiplier;
         chaseSpeed *= diff.enemySpeedMultiplier;
         retreatSpeed *= diff.enemySpeedMultiplier;
         detectionRadius *= diff.enemyDetectionMultiplier;
         attackCooldown /= diff.enemySpeedMultiplier;
-        
-        GetComponent<HealthSystem>().maxHealth = 
-            Mathf.RoundToInt(GetComponent<HealthSystem>().maxHealth * diff.enemyHealthMultiplier);
+
+        if (healthSystem != null)
+        {
+            healthSystem.maxHealth =
+                Mathf.RoundToInt(healthSystem.maxHealth * diff.enemyHealthMultiplier);
+        }
     }
 }
-        // Start in patrol state
-        currentState = EnemyState.Patrol;
-    }
 
     void Update()
     {
@@ -89,44 +90,60 @@ public class AdvancedEnemyAI : MonoBehaviour
             case EnemyState.Retreat:
                 RetreatBehavior();
                 break;
-        }
     }
+}
 
-    // --- State Behaviors ---
-    private void PatrolBehavior()
+private void FixedUpdate()
+{
+    // FixedUpdate logic if needed
+    // For example, physics-related updates or checks
+    if (currentState == EnemyState.Chase)
     {
-        if (waypoints.Count == 0) return;
+        CheckForPlayer();
+    }
+    else if (currentState == EnemyState.Attack)
+    {
+        CheckAttackConditions();
+    }
+    else if (currentState == EnemyState.Retreat)
+    {
+        CheckRetreatConditions();
+    }
+}
 
-        Vector3 direction = waypoints[currentWaypoint].position - transform.position;
-        transform.position += direction.normalized * patrolSpeed * Time.deltaTime;
+private void PatrolBehavior()
+{
+    if (waypoints.Count == 0) return;
 
-        if (Vector3.Distance(transform.position, waypoints[currentWaypoint].position) < 0.5f)
+    Vector3 direction = waypoints[currentWaypoint].position - transform.position;
+    transform.position += direction.normalized * patrolSpeed * Time.deltaTime;
+
+    if (Vector3.Distance(transform.position, waypoints[currentWaypoint].position) < 0.5f)
+    {
+        waitCounter += Time.deltaTime;
+        if (waitCounter >= waypointWaitTime)
         {
-            waitCounter += Time.deltaTime;
-            if (waitCounter >= waypointWaitTime)
-            {
-                currentWaypoint = (currentWaypoint + 1) % waypoints.Count;
-                waitCounter = 0f;
-            }
+            currentWaypoint = (currentWaypoint + 1) % waypoints.Count;
+            waitCounter = 0f;
         }
     }
-
+}
     private void ChaseBehavior()
     {
         Vector3 directionToPlayer = player.position - transform.position;
         if (!HasLineOfSight()) return;
-
+    
         // Avoid obstacles using raycast
         if (Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hit, detectionRadius, obstacleMask))
         {
             Vector3 avoidDirection = Vector3.Cross(hit.normal, Vector3.up).normalized;
             directionToPlayer += avoidDirection * 2f;
         }
-
+    
         transform.position += directionToPlayer.normalized * chaseSpeed * Time.deltaTime;
         transform.LookAt(player.position);
     }
-
+    
     private void AttackBehavior()
     {
         if (Time.time > lastAttackTime + attackCooldown)
@@ -141,30 +158,28 @@ public class AdvancedEnemyAI : MonoBehaviour
             currentState = EnemyState.Chase;
         }
     }
-
+    
     private void RetreatBehavior()
     {
         Vector3 retreatDirection = (transform.position - player.position).normalized;
         transform.position += retreatDirection * retreatSpeed * Time.deltaTime;
-
+    
         if (Vector3.Distance(transform.position, player.position) > retreatDistance)
         {
             currentState = EnemyState.Patrol;
         }
     }
-
-    // --- Helper Methods ---
+    
     private bool HasLineOfSight()
     {
-        RaycastHit hit;
         Vector3 direction = player.position - transform.position;
-        if (Physics.Raycast(transform.position, direction, out hit, detectionRadius))
+        if (Physics.Raycast(transform.position, direction, out RaycastHit hit, detectionRadius))
         {
             return hit.collider.CompareTag("Player");
         }
         return false;
     }
-
+    
     private void CheckForPlayer()
     {
         if (Vector3.Distance(transform.position, player.position) < detectionRadius && HasLineOfSight())
@@ -172,7 +187,7 @@ public class AdvancedEnemyAI : MonoBehaviour
             currentState = EnemyState.Chase;
         }
     }
-
+    
     private void CheckAttackConditions()
     {
         if (Vector3.Distance(transform.position, player.position) < attackDistance)
@@ -180,7 +195,7 @@ public class AdvancedEnemyAI : MonoBehaviour
             currentState = EnemyState.Attack;
         }
     }
-
+    
     private void CheckRetreatConditions()
     {
         if (healthSystem != null && healthSystem.CurrentHealth < retreatHealthThreshold)
@@ -188,7 +203,7 @@ public class AdvancedEnemyAI : MonoBehaviour
             currentState = EnemyState.Retreat;
         }
     }
-
+    
     private void PerformAttack()
     {
         // Example: Melee attack
@@ -197,12 +212,13 @@ public class AdvancedEnemyAI : MonoBehaviour
             player.GetComponent<HealthSystem>()?.TakeDamage(10);
         }
     }
-
-    // Visualize detection radius and attack range
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, detectionRadius);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackDistance);
+    
+        // Visualize detection radius and attack range
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, detectionRadius);
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, attackDistance);
+        }
     }

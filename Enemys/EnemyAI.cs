@@ -5,21 +5,23 @@ public class EnemyAI : MonoBehaviour
     private Transform player;
 
     void Start(){
-        player = GameObject.FindGameObjectWithTag('Player').Transform;
-
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    void Update();
+    void Update()
     {
-        Transform.LookAt(player):
-        Transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag('Plyer'))
+        if (player != null)
         {
-            GameManger.Istance.TakeDamage(5);
+            transform.LookAt(player);
+            transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            GameManager.Instance.TakeDamage(5);
         }
     }
 }

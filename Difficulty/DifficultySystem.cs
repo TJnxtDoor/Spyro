@@ -5,7 +5,7 @@ public class DifficultySettings : ScriptableObject
     [Header(DifficultyLevels)]
         public DifficultyLevels currentDifficulty  = DifficultyLevel.Normal;
 
-    [Header(Player Modifiers)]
+    [Header("Player Modifiers")]
         public float playerHealthMultiplyer = 1f;
         public float playerDamagehMultiplyer = 1f;
         public float playerSpeechMultiplyer = 1f;
@@ -13,7 +13,7 @@ public class DifficultySettings : ScriptableObject
         public float playerSpwanRateMultiplyer = 1f;
 
     
-    [Header(Enemy Modifiers)]
+    [Header("Enemy Modifiers")]
     
         public float playerHealthMultiplyer = 1f;
         public float playerDamagehMultiplyer = 1f;
@@ -21,7 +21,7 @@ public class DifficultySettings : ScriptableObject
         public float playerDetectionMultiplyer = 1f;
         public float playerSpwanRateMultiplyer = 1f;
 
-     [Header(Progression  Modifiers)]
+     [Header("Progression Modifiers")]
     
         public float playerHealthMultiplyer = 1f;
         public float playerDamagehMultiplyer = 1f;
@@ -30,9 +30,9 @@ public class DifficultySettings : ScriptableObject
         public float playerSpwanRateMultiplyer = 1f;
 
 
-    [Header(Environmental Challanges)]
+    [Header("Environmental Challanges")]
         public bool enableHazards = true;
-        public float hazarDamangeMultiplier = 1f
+    public float hazarDamangeMultiplier = 1f;
         public float platformStabilityMultiplier = 1f;
 
 
@@ -42,9 +42,9 @@ public class DifficultySettings : ScriptableObject
             //Hard
             Ummm,
             //Nightmare
-            Umm maybe dont,
+            Umm_maybe_dont,
             //Exteamly Diffuclty 
-            YourCookedMan,
+            Your_Cooked_Man,
         }
 
 

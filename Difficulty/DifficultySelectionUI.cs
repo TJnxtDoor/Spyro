@@ -27,8 +27,10 @@ public class DifficultySelectorUI : MonoBehaviour
     //save Selected difficulty to PlayerPerfs
     public void AdjustDynamicDifficulty(float playerSucceessRate)
     {
-        if(playerSucceessRate > 0.8 f) difficultySettings.SetDifficulty(currentDifficulty + 1);
-        else if (playerSucceessRate < 0.3f) difficultySettings.SetDifficulty(currentDifficulty - 1)
+        if (playerSucceessRate > 0.8f)
+            difficultySettings.SetDifficulty(difficultySettings.currentDifficulty + 1);
+        else if (playerSucceessRate < 0.3f)
+            difficultySettings.SetDifficulty(difficultySettings.currentDifficulty - 1);
     }
 
     //Unlock Achievements based on difficulty
