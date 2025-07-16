@@ -1,8 +1,7 @@
 // WorldUI.cs
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace Spyro.Worlds
+namespace WorldUI
 {
     public class WorldUI : MonoBehaviour
     {
@@ -28,11 +27,7 @@ namespace Spyro.Worlds
         private Transform playerTransform;
         private Material[] grassMaterials;
         private Vector4[] grassOriginalPositions;
-        private bool grassInitialized = false;
-
-
-
-
+        private readonly Vector4[] grassOriginalPositions;
 
         void Start()
         {
@@ -138,11 +133,13 @@ namespace Spyro.Worlds
                         );
 
                         mat.SetVector("_BendRotation", bend);
+                        void Update()
+                        {
+                            
+                        }
                     }
                 }
             }
-
-
         }
     }
 }
