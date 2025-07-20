@@ -3,4 +3,4 @@
   
                                               UPDATES!!!!!!
   - added another world, for now its a placeholder,
-  - added load and save gamee gameKey and quit gamekey
+  - added load and save game gameKey and quit gamekey
