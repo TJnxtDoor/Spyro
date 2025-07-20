@@ -1,0 +1,15 @@
+/Users/afzal/Documents/GitHub/Spyro/Spyro/bin/Debug/net9.0/Spyro
+/Users/afzal/Documents/GitHub/Spyro/Spyro/bin/Debug/net9.0/Spyro.deps.json
+/Users/afzal/Documents/GitHub/Spyro/Spyro/bin/Debug/net9.0/Spyro.runtimeconfig.json
+/Users/afzal/Documents/GitHub/Spyro/Spyro/bin/Debug/net9.0/Spyro.dll
+/Users/afzal/Documents/GitHub/Spyro/Spyro/bin/Debug/net9.0/Spyro.pdb
+/Users/afzal/Documents/GitHub/Spyro/Spyro/obj/Debug/net9.0/Spyro.GeneratedMSBuildEditorConfig.editorconfig
+/Users/afzal/Documents/GitHub/Spyro/Spyro/obj/Debug/net9.0/Spyro.AssemblyInfoInputs.cache
+/Users/afzal/Documents/GitHub/Spyro/Spyro/obj/Debug/net9.0/Spyro.AssemblyInfo.cs
+/Users/afzal/Documents/GitHub/Spyro/Spyro/obj/Debug/net9.0/Spyro.csproj.CoreCompileInputs.cache
+/Users/afzal/Documents/GitHub/Spyro/Spyro/obj/Debug/net9.0/Spyro.sourcelink.json
+/Users/afzal/Documents/GitHub/Spyro/Spyro/obj/Debug/net9.0/Spyro.dll
+/Users/afzal/Documents/GitHub/Spyro/Spyro/obj/Debug/net9.0/refint/Spyro.dll
+/Users/afzal/Documents/GitHub/Spyro/Spyro/obj/Debug/net9.0/Spyro.pdb
+/Users/afzal/Documents/GitHub/Spyro/Spyro/obj/Debug/net9.0/Spyro.genruntimeconfig.cache
+/Users/afzal/Documents/GitHub/Spyro/Spyro/obj/Debug/net9.0/ref/Spyro.dll
