@@ -48,7 +48,39 @@ public class PlayerModel : MonoBehaviour
             player3DModel.transform.SetParent(transform);
         }
         UpdateUI();
-         
 
+        GameManager.Instance.OnScoreChanged += UpdateUI;
+        GameManager.Instance.OnHealthChanged += UpdateUI;
+        GameManager.Instance.OnGamePaused += UpdateUI;
+        GameManager.Instance.OnGameResumed += UpdateUI;
+        GameManager.Instance.OnGameQuit += UpdateUI;
+    }
+
+    private AudioSource walkAudioSource;
+    public AudioClip walkClip;
+
+    private void Awake()
+    {
+        walkAudioSource = gameObject.AddComponent<AudioSource>();
+        walkAudioSource.clip = walkClip;
+        walkAudioSource.spatialBlend = 1.0f;
+        walkAudioSource.loop = true;
+        walkAudioSource.playOnAwake = false;
+    }
+
+    public void PlayWalkAudio()
+    {
+        if (!walkAudioSource.isPlaying && walkClip != null)
+        {
+            walkAudioSource.Play();
+        }
+    }
+
+    public void StopWalkAudio()
+    {
+        if (walkAudioSource.isPlaying)
+        {
+            walkAudioSource.Stop();
+        }
     }
 }
