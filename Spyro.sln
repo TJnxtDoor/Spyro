@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spyro", "Spyro\Spyro.csproj", "{DE12CDB1-EEB8-282A-7E06-D786EC8FECC6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DE12CDB1-EEB8-282A-7E06-D786EC8FECC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE12CDB1-EEB8-282A-7E06-D786EC8FECC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE12CDB1-EEB8-282A-7E06-D786EC8FECC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE12CDB1-EEB8-282A-7E06-D786EC8FECC6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C1C83483-7D98-45D9-9E74-702C799C4708}
+	EndGlobalSection
+EndGlobal
