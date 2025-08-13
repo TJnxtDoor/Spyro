@@ -8,7 +8,6 @@ public class Map : MonoBehaviour
 {
     [System.Serializable] 
     public class SpawnPoint 
-
     {
         public Transform point;
         public bool isOccupied;
@@ -86,25 +85,35 @@ public class Map : MonoBehaviour
     MapColors mapColors;  
     public MapColors MapColors => mapColors;
 
-    void UpdateColors()  
+    // A small fix to ensure mapColors is always initialized
+    void Awake()
     {
         if (mapColors == null)
         {
             mapColors = new MapColors();
         }
+    }
 
+    void UpdateColors()  
+    {
         //checks if map is undiscovered
         if (mapColors.isUndiscovered)
         {
             //set colors to undiscovered colors
             RenderSettings.fogColor = mapColors.undiscoveredFogColor;
-            Camera.main.backgroundColor = mapColors.undiscoveredBackgroundColor;
+            if (Camera.main != null)
+            {
+                Camera.main.backgroundColor = mapColors.undiscoveredBackgroundColor;
+            }
         }
         else
         {
             //set colors to discovered colors
             RenderSettings.fogColor = mapColors.discoveredFogColor;
-            Camera.main.backgroundColor = mapColors.discoveredBackgroundColor;
+            if (Camera.main != null)
+            {
+                Camera.main.backgroundColor = mapColors.discoveredBackgroundColor;
+            }
         }
     }
 
