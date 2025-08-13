@@ -99,4 +99,19 @@ public class Map : MonoBehaviour
             Camera.main.backgroundColor = mapColors.discoveredBackgroundColor;
         }
     }
+    public void DiscoverMap()
+    {
+        if (mapColors != null)
+        {
+            mapColors.isUndiscovered = false;
+            updateColors();
+        }
+        else
+        {
+            Debug.LogWarning("MapColors is not initialized.");
+        }
+        // map color is set to discovered
+        RenderSettings.fogColor = mapColors.discoveredFogColor;
+        Camera.main.backgroundColor = mapColors.discoveredBackgroundColor;
+    }
 }
