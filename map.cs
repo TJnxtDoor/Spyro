@@ -1,5 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
+ using System.Linq;
+
 
 public class Map : MonoBehaviour
 {
@@ -14,7 +18,23 @@ public class Map : MonoBehaviour
             return point.position;
         }
 
-        [Header("Spawn Points")]
+
+        // man im dead 💀
+        public void SetPosition(Vector3 newPosition)
+        {
+            point.position = newPosition;
+        }
+        public void playerDies()
+        {
+            isOccupied = false;
+        }
+        public void playerSpawns()
+        {
+            isOccupied = true;
+        }
+
+
+
         public List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
 
         public Transform GetRandomSpawnPoint()
@@ -56,10 +76,10 @@ public class Map : MonoBehaviour
 
     map_colors mapColors;
     public MapColors MapColors => mapColors;
-        updateColors();
+    updateColors();
 
     void updateColors()
-{
+    {
         if (mapColors == null)
         {
             mapColors = new MapColors();
