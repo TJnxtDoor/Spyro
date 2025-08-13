@@ -47,7 +47,4 @@ public class DifficultySettings : ScriptableObject
             Your_Cooked_Man,
         }
 
-
-
-
 }   
