@@ -2,83 +2,91 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
- using System.Linq;
-
+using System.Linq;
 
 public class Map : MonoBehaviour
 {
-    [system.Serializable]
-    public class SpawnPoint
+    [System.Serializable] 
+    public class SpawnPoint 
+
     {
         public Transform point;
         public bool isOccupied;
 
-        public vector3 GetPosition()
+        public Vector3 GetPosition()  
         {
             return point.position;
         }
 
-
-        // man im dead 💀
         public void SetPosition(Vector3 newPosition)
         {
             point.position = newPosition;
         }
-        public void playerDies()
+        
+        // man im dead 💀
+        
+        public void PlayerDies()
         {
             isOccupied = false;
         }
-        public void playerSpawns()
+        
+        public void PlayerSpawns() 
         {
             isOccupied = true;
         }
+    }  
 
+    public List<SpawnPoint> spawnPoints = new List<SpawnPoint>();  
 
-
-        public List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
-
-        public Transform GetRandomSpawnPoint()
+    public Transform GetRandomSpawnPoint()
+    {
+        List<SpawnPoint> availablePoints = spawnPoints.FindAll(sp => !sp.isOccupied);
+        if (availablePoints.Count == 0)
         {
-            List<SpawnPoint> availablePoints = spawnPoints.FindAll(sp => !sp.isOccupied);
-            if (availablePoints.Count == 0)
-            {
-                Debug.LogWarning("No available spawn points!");
-                return null;
-            }
-            int randomIndex = Random.Range(0, availablePoints.Count);
-            return availablePoints[randomIndex].point;
-        }
-
-        public player SpawnPlayer(GameObject playerPrefab)
-        {
-            Transform spawnPoint = GetRandomSpawnPoint();
-            if (spawnPoint != null)
-            {
-                GameObject playerObj = Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
-                return playerObj.GetComponent<player>();
-            }
+            Debug.LogWarning("No available spawn points!");
             return null;
         }
-
-        public Enemy SpawnEnemy(GameObject enemyPrefab)
-        {
-            Transform spawnPoint = GetRandomSpawnPoint();
-            if (spawnPoint != null)
-            {
-                GameObject enemyObj = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
-                return enemyObj.GetComponent<Enemy>();
-            }
-            return null;
-            return null;
-        }
-
+        int randomIndex = Random.Range(0, availablePoints.Count);
+        availablePoints[randomIndex].isOccupied = true;  
+        return availablePoints[randomIndex].point;
     }
 
-    map_colors mapColors;
-    public MapColors MapColors => mapColors;
-    updateColors();
+    public Player SpawnPlayer(GameObject playerPrefab) 
+    {
+        Transform spawnPoint = GetRandomSpawnPoint();
+        if (spawnPoint != null)
+        {
+            GameObject playerObj = Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
+            Player player = playerObj.GetComponent<Player>(); 
+            if (player != null)
+            {
+                player.SetSpawnPoint(spawnPoint);  
+            }
+            return player;
+        }
+        return null;
+    }
 
-    void updateColors()
+    public Enemy SpawnEnemy(GameObject enemyPrefab)
+    {
+        Transform spawnPoint = GetRandomSpawnPoint();
+        if (spawnPoint != null)
+        {
+            GameObject enemyObj = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+            Enemy enemy = enemyObj.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.SetSpawnPoint(spawnPoint); 
+            }
+            return enemy;
+        }
+        return null;
+    }
+
+    MapColors mapColors;  
+    public MapColors MapColors => mapColors;
+
+    void UpdateColors()  
     {
         if (mapColors == null)
         {
@@ -99,19 +107,26 @@ public class Map : MonoBehaviour
             Camera.main.backgroundColor = mapColors.discoveredBackgroundColor;
         }
     }
+
     public void DiscoverMap()
     {
         if (mapColors != null)
         {
             mapColors.isUndiscovered = false;
-            updateColors();
+            UpdateColors();  
         }
         else
         {
             Debug.LogWarning("MapColors is not initialized.");
         }
-        // map color is set to discovered
-        RenderSettings.fogColor = mapColors.discoveredFogColor;
-        Camera.main.backgroundColor = mapColors.discoveredBackgroundColor;
     }
+}
+
+public class MapColors
+{
+    public bool isUndiscovered = true;
+    public Color undiscoveredFogColor = Color.black;
+    public Color discoveredFogColor = Color.gray;
+    public Color undiscoveredBackgroundColor = Color.black;
+    public Color discoveredBackgroundColor = Color.gray;
 }
