@@ -5,37 +5,40 @@ using Random = UnityEngine.Random;
 using System.Linq;
 
 public class Map : MonoBehaviour
+
 {
-    [System.Serializable] 
-    public class SpawnPoint 
+    [System.Serializable]
+    public class SpawnPoint
     {
         public Transform point;
         public bool isOccupied;
 
-        public Vector3 GetPosition()  
+        public Vector3 GetPosition()
         {
             return point.position;
         }
+
+
 
         public void SetPosition(Vector3 newPosition)
         {
             point.position = newPosition;
         }
-        
+
         // man im dead 💀
-        
+
         public void PlayerDies()
         {
             isOccupied = false;
         }
-        
-        public void PlayerSpawns() 
+
+        public void PlayerSpawns()
         {
             isOccupied = true;
         }
-    }  
+    }
 
-    public List<SpawnPoint> spawnPoints = new List<SpawnPoint>();  
+    public List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
 
     public Transform GetRandomSpawnPoint()
     {
@@ -46,20 +49,20 @@ public class Map : MonoBehaviour
             return null;
         }
         int randomIndex = Random.Range(0, availablePoints.Count);
-        availablePoints[randomIndex].isOccupied = true;  
+        availablePoints[randomIndex].isOccupied = true;
         return availablePoints[randomIndex].point;
     }
 
-    public Player SpawnPlayer(GameObject playerPrefab) 
+    public Player SpawnPlayer(GameObject playerPrefab)
     {
         Transform spawnPoint = GetRandomSpawnPoint();
         if (spawnPoint != null)
         {
             GameObject playerObj = Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
-            Player player = playerObj.GetComponent<Player>(); 
+            Player player = playerObj.GetComponent<Player>();
             if (player != null)
             {
-                player.SetSpawnPoint(spawnPoint);  
+                player.SetSpawnPoint(spawnPoint);
             }
             return player;
         }
@@ -75,14 +78,14 @@ public class Map : MonoBehaviour
             Enemy enemy = enemyObj.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.SetSpawnPoint(spawnPoint); 
+                enemy.SetSpawnPoint(spawnPoint);
             }
             return enemy;
         }
         return null;
     }
 
-    MapColors mapColors;  
+    MapColors mapColors;
     public MapColors MapColors => mapColors;
 
     // A small fix to ensure mapColors is always initialized
@@ -94,7 +97,7 @@ public class Map : MonoBehaviour
         }
     }
 
-    void UpdateColors()  
+    void UpdateColors()
     {
         //checks if map is undiscovered
         if (mapColors.isUndiscovered)
@@ -122,14 +125,14 @@ public class Map : MonoBehaviour
         if (mapColors != null)
         {
             mapColors.isUndiscovered = false;
-            UpdateColors();  
+            UpdateColors();
         }
         else
         {
             Debug.LogWarning("MapColors is not initialized.");
         }
     }
-}
+} 
 
 public class MapColors
 {
