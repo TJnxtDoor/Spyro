@@ -8,6 +8,7 @@ public class GameCompletionHandler : MonoBehaviour
             AchievementSystem.Instance.UnlockAchievement("ultimate_spyro");
             UnlockGoldenSkin();
             EnableNewGamePlus();
+            
         }
     }
 

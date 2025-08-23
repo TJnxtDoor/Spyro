@@ -58,6 +58,10 @@ public class PlayerModel : MonoBehaviour
 
     private AudioSource walkAudioSource;
     public AudioClip walkClip;
+    public audioClip jumpClip;
+    public audioClip attackClip;
+
+    public audioClip takeDamageClip;
 
     private void Awake()
     {

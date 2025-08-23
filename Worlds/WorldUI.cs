@@ -124,7 +124,7 @@ namespace WorldUI
                         Vector3 bendDirection = (grassPos - playerPos).normalized;
                         bendDirection.y = 0;
 
-                        // Apply bending effect
+                        // Applies bending effect
                         Vector4 bend = new Vector4(
                             bendDirection.x * influence * grassBendAmount,
                             0,

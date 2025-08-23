@@ -1,4 +1,3 @@
-// 100PercentAchievements.cs
 using UnityEngine;
 
 public class CompletionTracker : MonoBehaviour

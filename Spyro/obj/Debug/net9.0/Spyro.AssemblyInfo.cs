@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Spyro")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+63b634bd0bbe4420469eca7a1228fad7c8ba8ebf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+45911aac14089419cae03dcb9ec773b1b75886de")]
 [assembly: System.Reflection.AssemblyProductAttribute("Spyro")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Spyro")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
