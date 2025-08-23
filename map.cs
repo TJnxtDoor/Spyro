@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 using System.Linq;
-
 public class Map : MonoBehaviour
 
 {
@@ -17,8 +16,6 @@ public class Map : MonoBehaviour
         {
             return point.position;
         }
-
-
 
         public void SetPosition(Vector3 newPosition)
         {
@@ -120,6 +117,8 @@ public class Map : MonoBehaviour
         }
     }
 
+     
+
     public void DiscoverMap()
     {
         if (mapColors != null)
@@ -140,5 +139,5 @@ public class MapColors
     public Color undiscoveredFogColor = Color.black;
     public Color discoveredFogColor = Color.gray;
     public Color undiscoveredBackgroundColor = Color.black;
-    public Color discoveredBackgroundColor = Color.gray;
+    public Color discoveredBackgroundColor = Color;
 }

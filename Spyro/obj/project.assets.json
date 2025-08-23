@@ -8,24 +8,31 @@
     "net9.0": []
   },
   "packageFolders": {
-    "/Users/afzal/.nuget/packages/": {}
+    "C:\\Users\\shydr\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/afzal/Documents/GitHub/Spyro/Spyro/Spyro.csproj",
+      "projectUniqueName": "C:\\Users\\shydr\\Desktop\\Github REP\\Spyro\\Spyro\\Spyro.csproj",
       "projectName": "Spyro",
-      "projectPath": "/Users/afzal/Documents/GitHub/Spyro/Spyro/Spyro.csproj",
-      "packagesPath": "/Users/afzal/.nuget/packages/",
-      "outputPath": "/Users/afzal/Documents/GitHub/Spyro/Spyro/obj/",
+      "projectPath": "C:\\Users\\shydr\\Desktop\\Github REP\\Spyro\\Spyro\\Spyro.csproj",
+      "packagesPath": "C:\\Users\\shydr\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\shydr\\Desktop\\Github REP\\Spyro\\Spyro\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/Users/afzal/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\shydr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -65,7 +72,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
