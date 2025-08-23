@@ -1,11 +1,11 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-
+[System.Serializable]
 public class AchievementSystem : MonoBehaviour
 {
-    public static AchievementSystem Instance
-    [System.Seriallizable]
+    public static AchievementSystem Instance;
+    
     public class Achievements
     {
         public string id;
