@@ -74,7 +74,5 @@ public class AchievementSystem : MonoBehaviour
         // Secret achievements
         CreateAchievement("secret_1", "Hidden Treasure", "Find the secret cave",
             AchievementType.SecretFound, 1, 5000);
-
-
     }
 }

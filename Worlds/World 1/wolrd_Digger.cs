@@ -18,7 +18,64 @@ namespace WolrdDigger
         public float maxProgression = 100f;
         public float minProgression = 0f;
         public float gems;
+        private AudioClip gemCollectSound;
+        public int Gems_collected_Start;
+        private audioSclip gemCollectSound;
+        public int Gems_collected_total;
+
+
     };
+    
+
+
+    //Game Music
+    public class GameMuusic
+    {
+        private SOundtrack currentTrack;
+        public void PlayTrack(Soundtrack track)
+        {
+            currentTrack = track;
+            // Play the track using an audio source
+        }
+        // loop the track
+        public void LoopTrack()
+        {
+            if (currentTrack != null)
+            {
+                // Loop the track using an audio source
+            }
+        }
+
+        public void PauseBackgroundMusic()
+        {
+            player.Pause();
+        }
+
+        public GameMuusic(string Musicfile)
+        {
+            player.location = Musicfile;
+            player.load();
+        }
+
+        public void storeMusic(string Musicfile)
+        {
+            player.location = Musicfile;
+            Musicfile = "Worlds/World 1/Audio/World1Music.mp3";
+            player.load();
+        }
+
+        public void ResumeBackgroundMusic()
+        {
+            player.Play();
+        }
+
+        public void StopBackgroundMusic()
+        {
+            player.Stop();
+        }
+    };
+    
+
 
     public Text healthText;
     public float enemyDamage = 10f;
