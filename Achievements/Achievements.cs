@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class AchievementSystem : MonoBehaviour
 {
     public static AchievementSystem Instance;
-    
+
     public class Achievements
     {
         public string id;

@@ -27,24 +27,24 @@ public class SkinParticleController : MonoBehaviour
     public void InitializeParticles(SmokeSparkSettings settings)
     {
         ClearExistingParticles();
-        
+
         if (settings.smokeParticles != null)
         {
-            activeSmoke = Instantiate(settings.smokeParticles, 
-                transform.position + settings.smokeParticleOffset, 
-                Quaternion.identity, 
+            activeSmoke = Instantiate(settings.smokeParticles,
+                transform.position + settings.smokeParticleOffset,
+                Quaternion.identity,
                 transform);
-            
+
             ConfigureSmoke(settings);
         }
 
         if (settings.sparkParticles != null)
         {
-            activeSparks = Instantiate(settings.sparkParticles, 
-                transform.position + settings.sparkParticleOffset, 
-                Quaternion.identity, 
+            activeSparks = Instantiate(settings.sparkParticles,
+                transform.position + settings.sparkParticleOffset,
+                Quaternion.identity,
                 transform);
-            
+
             ConfigureSparks(settings);
         }
     }
@@ -53,14 +53,14 @@ public class SkinParticleController : MonoBehaviour
     {
         ParticleSystem.MainModule main = activeSmoke.main;
         ParticleSystem.ColorOverLifetimeModule color = activeSmoke.colorOverLifetime;
-        
+
         main.startSpeed = 0.5f;
         main.startSize = 0.3f;
         color.color = settings.smokeColorOverLifetime;
-        
+
         smokeEmission = activeSmoke.emission;
         smokeEmission.rateOverTime = settings.smokeEmissionRate;
-        
+
         activeSmoke.Play();
     }
 
@@ -68,15 +68,15 @@ public class SkinParticleController : MonoBehaviour
     {
         ParticleSystem.MainModule main = activeSparks.main;
         ParticleSystem.EmissionModule emission = activeSparks.emission;
-        
+
         main.startColor = settings.sparkColor;
         main.startSpeed = 2f;
         main.startSize = 0.1f;
-        
+
         emission.SetBursts(new ParticleSystem.Burst[] {
             new ParticleSystem.Burst(settings.sparkBurstInterval, settings.sparkBurstAmount)
         });
-        
+
         activeSparks.Play();
     }
 

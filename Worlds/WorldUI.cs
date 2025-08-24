@@ -135,7 +135,7 @@ namespace WorldUI
                         mat.SetVector("_BendRotation", bend);
                         void Update()
                         {
-                            
+
                         }
                     }
                 }

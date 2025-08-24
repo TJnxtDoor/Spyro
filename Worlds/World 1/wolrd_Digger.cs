@@ -25,7 +25,7 @@ namespace WolrdDigger
 
 
     };
-    
+
 
 
     //Game Music
@@ -74,7 +74,7 @@ namespace WolrdDigger
             player.Stop();
         }
     };
-    
+    //
 
 
     public Text healthText;
@@ -170,4 +170,3 @@ namespace WolrdDigger
         Debug.Log("Game Save Successful");
     }
 };
-  

@@ -117,7 +117,7 @@ public class Map : MonoBehaviour
         }
     }
 
-     
+
 
     public void DiscoverMap()
     {
@@ -131,7 +131,7 @@ public class Map : MonoBehaviour
             Debug.LogWarning("MapColors is not initialized.");
         }
     }
-} 
+}
 
 public class MapColors
 {

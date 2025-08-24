@@ -59,7 +59,7 @@ public class SkinManager : MonoBehaviour
         {
             // Unequip current skin
             allSkins.ForEach(s => s.isEquipped = false);
-            
+
             skin.isEquipped = true;
             currentSkinID = skinID;
             ApplySkin(skinID);

@@ -7,10 +7,10 @@ public class SkillMastery : MonoBehaviour
     public List<Skill> skills = new List<Skill>();
 
     [System.Serializable]
-    public class Skill 
+    public class Skill
     {
         public string skillName;
-        public bool isMastered;  
+        public bool isMastered;
         public int masteryLevel;
     }
 
@@ -51,8 +51,8 @@ public class SkillMastery : MonoBehaviour
         if (skill != null)
         {
             skill.masteryLevel += amount;
-            
-            if (skill.masteryLevel >= 10) 
+
+            if (skill.masteryLevel >= 10)
             {
                 skill.isMastered = true;
             }

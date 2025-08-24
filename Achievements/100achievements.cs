@@ -16,8 +16,8 @@ public class CompletionTracker : MonoBehaviour
 
     // Completion Flags
     public bool AllWorlds100Percent => WorldsCompleted == TotalWorlds;
-    public bool AllCollectibles => GemsCollected >= TotalGems && 
-                                  DragonsFreed >= TotalDragons && 
+    public bool AllCollectibles => GemsCollected >= TotalGems &&
+                                  DragonsFreed >= TotalDragons &&
                                   EggsCollected >= TotalEggs;
     public bool AllChallenges => SkillMastery.Instance.AllChallengesComplete;
     public bool AllSecrets => SecretAreaManager.Instance.AllSecretsFound;
@@ -39,9 +39,9 @@ public class CompletionTracker : MonoBehaviour
 
     public bool Check100PercentCompletion()
     {
-        return AllWorlds100Percent && 
-               AllCollectibles && 
-               AllChallenges && 
+        return AllWorlds100Percent &&
+               AllCollectibles &&
+               AllChallenges &&
                AllSecrets &&
                AchievementSystem.Instance.AllAchievementsUnlocked;
     }
@@ -53,64 +53,64 @@ public static class CompletionAchievements
     public static void Create100PercentAchievements()
     {
         AchievementSystem.Instance.CreateAchievement(
-            "perfect_worlds", 
-            "Dimensional Dominator", 
+            "perfect_worlds",
+            "Dimensional Dominator",
             "Complete all worlds with 100% completion",
-            AchievementType.WorldCompletion, 
+            AchievementType.WorldCompletion,
             WorldManager.Instance.TotalWorlds,
             5000
         );
 
         AchievementSystem.Instance.CreateAchievement(
-            "gem_tycoon", 
-            "Gem Tycoon", 
+            "gem_tycoon",
+            "Gem Tycoon",
             "Collect every gem in the game",
-            AchievementType.TotalGemsCollected, 
+            AchievementType.TotalGemsCollected,
             WorldManager.Instance.TotalGemsInGame,
             10000
         );
 
         AchievementSystem.Instance.CreateAchievement(
-            "dragon_liberator", 
-            "Dragon Liberator", 
+            "dragon_liberator",
+            "Dragon Liberator",
             "Free all trapped dragons",
-            AchievementType.DragonsFreed, 
+            AchievementType.DragonsFreed,
             DragonStatueManager.Instance.TotalStatues,
             7500
         );
 
         AchievementSystem.Instance.CreateAchievement(
-            "egg_hunter", 
-            "Egg Hunter Supreme", 
+            "egg_hunter",
+            "Egg Hunter Supreme",
             "Collect all dragon eggs",
-            AchievementType.EggsCollected, 
+            AchievementType.EggsCollected,
             EggManager.Instance.TotalEggs,
             5000
         );
 
         AchievementSystem.Instance.CreateAchievement(
-            "skill_grandmaster", 
-            "Grandmaster of the Arts", 
+            "skill_grandmaster",
+            "Grandmaster of the Arts",
             "Master all abilities and skills",
-            AchievementType.SkillsMastered, 
+            AchievementType.SkillsMastered,
             SkillMastery.Instance.TotalSkills,
             2500
         );
 
         AchievementSystem.Instance.CreateAchievement(
-            "secret_seeker", 
-            "Keeper of Secrets", 
+            "secret_seeker",
+            "Keeper of Secrets",
             "Discover all hidden areas",
-            AchievementType.SecretsFound, 
+            AchievementType.SecretsFound,
             SecretAreaManager.Instance.TotalSecrets,
             15000
         );
 
         AchievementSystem.Instance.CreateAchievement(
-            "ultimate_spyro", 
-            "Ultimate Spyro", 
+            "ultimate_spyro",
+            "Ultimate Spyro",
             "Achieve 100% game completion",
-            AchievementType.FullCompletion, 
+            AchievementType.FullCompletion,
             1,
             50000
         );
