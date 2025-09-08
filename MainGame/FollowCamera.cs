@@ -9,14 +9,4 @@ public class CameraFollow : MonoBehaviour
         transform.position = target.position + offset;
         transform.LookAt(target);
     }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            offset = Quaternion.Euler(0, 90, 0) * offset;
-        }
-    }
-    
-
 }

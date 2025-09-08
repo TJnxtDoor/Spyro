@@ -19,8 +19,18 @@ public class GemCollectible : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Instantiate(collectEffect, transform.position, Quaternion.identity);
-            GemProgressionSystem.Instance.AddGems(gemValue);
+            GemProgressionSystem.Instance.A(ddGems(gemValue));
+
             Destroy(gameObject);
+
+            if (gamesave is null)
+            {
+                gamesave = new GameObject("gamesave");
+                gamesave.AddComponent<gamesave>();
+            }
+            gamesave.GetComponent<gamesave>().AddGem(gemValue);
+            gamesave.GetComponent<gamesave>().Save();
+            
         }
     }
 }

@@ -21,7 +21,7 @@ public class Skin
 public class SkinManager : MonoBehaviour
 {
     // Previous variables...
-
+    
     private ParticleSystem currentTrail;
     private ParticleSystem currentAura;
 
@@ -43,10 +43,10 @@ public class SkinManager : MonoBehaviour
                 currentTrail = Instantiate(particles.trailEffect, spyroRenderer.transform);
                 ApplyParticleSettings(currentTrail, particles);
             }
-
+            
             if (particles.auraEffect != null)
             {
-                currentAura = Instantiate(particles.auraEffect, spyroRenderer.transform.position,
+                currentAura = Instantiate(particles.auraEffect, spyroRenderer.transform.position, 
                                        Quaternion.identity, spyroRenderer.transform);
                 ApplyParticleSettings(currentAura, particles);
             }
@@ -57,13 +57,13 @@ public class SkinManager : MonoBehaviour
     {
         var main = ps.main;
         main.startColor = settings.particleColor;
-
+        
         if (ps.main.loop && ps is ParticleSystem.TrailModule)
         {
             var trails = ps.trails;
             trails.lifetimeMultiplier = settings.trailLifetimeMultiplier;
         }
-
+        
         ps.Play();
     }
 
