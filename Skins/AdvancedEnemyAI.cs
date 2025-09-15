@@ -9,7 +9,7 @@ public class AdvancedEnemyAI : MonoBehaviour
     [Header("States")]
     public EnemyState currentState;
     private Transform player;
-    
+
     [Header("Patrol Settings")]
     public List<Transform> waypoints = new List<Transform>();
     private int currentWaypoint = 0;
@@ -33,38 +33,29 @@ public class AdvancedEnemyAI : MonoBehaviour
     public LayerMask obstacleMask;
     private HealthSystem healthSystem;
 
-    void Start()
-
-    private void Start()
-        {
-        ApplyDifficultyModifiers();
-
-        }
-
-   // AdvancedEnemyAI.cs updates
-public class AdvancedEnemyAI : MonoBehaviour
-{
     private void Start()
     {
+        // Initialize player and health system references
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        healthSystem = GetComponent<HealthSystem>();
+
         ApplyDifficultyModifiers();
+
+        currentState = EnemyState.Patrol;
     }
 
     private void ApplyDifficultyModifiers()
     {
         DifficultySettings diff = GameManager.Instance.difficultySettings;
-        
+
         patrolSpeed *= diff.enemySpeedMultiplier;
         chaseSpeed *= diff.enemySpeedMultiplier;
         retreatSpeed *= diff.enemySpeedMultiplier;
         detectionRadius *= diff.enemyDetectionMultiplier;
         attackCooldown /= diff.enemySpeedMultiplier;
-        
-        GetComponent<HealthSystem>().maxHealth = 
+
+        GetComponent<HealthSystem>().maxHealth =
             Mathf.RoundToInt(GetComponent<HealthSystem>().maxHealth * diff.enemyHealthMultiplier);
-    }
-}
-        // Start in patrol state
-        currentState = EnemyState.Patrol;
     }
 
     void Update()
@@ -75,17 +66,17 @@ public class AdvancedEnemyAI : MonoBehaviour
                 PatrolBehavior();
                 CheckForPlayer();
                 break;
-            
+
             case EnemyState.Chase:
                 ChaseBehavior();
                 CheckAttackConditions();
                 CheckRetreatConditions();
                 break;
-            
+
             case EnemyState.Attack:
                 AttackBehavior();
                 break;
-            
+
             case EnemyState.Retreat:
                 RetreatBehavior();
                 break;
@@ -206,3 +197,4 @@ public class AdvancedEnemyAI : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackDistance);
     }
+}

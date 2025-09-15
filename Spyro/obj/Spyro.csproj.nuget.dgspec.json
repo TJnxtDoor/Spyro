@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/afzal/Documents/GitHub/Spyro/Spyro/Spyro.csproj": {}
+    "/Users/afzal/Documents/GitHub/correct-the-html-responsive/Spyro/Spyro/Spyro.csproj": {}
   },
   "projects": {
-    "/Users/afzal/Documents/GitHub/Spyro/Spyro/Spyro.csproj": {
+    "/Users/afzal/Documents/GitHub/correct-the-html-responsive/Spyro/Spyro/Spyro.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/afzal/Documents/GitHub/Spyro/Spyro/Spyro.csproj",
+        "projectUniqueName": "/Users/afzal/Documents/GitHub/correct-the-html-responsive/Spyro/Spyro/Spyro.csproj",
         "projectName": "Spyro",
-        "projectPath": "/Users/afzal/Documents/GitHub/Spyro/Spyro/Spyro.csproj",
+        "projectPath": "/Users/afzal/Documents/GitHub/correct-the-html-responsive/Spyro/Spyro/Spyro.csproj",
         "packagesPath": "/Users/afzal/.nuget/packages/",
-        "outputPath": "/Users/afzal/Documents/GitHub/Spyro/Spyro/obj/",
+        "outputPath": "/Users/afzal/Documents/GitHub/correct-the-html-responsive/Spyro/Spyro/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/afzal/.nuget/NuGet/NuGet.Config"
