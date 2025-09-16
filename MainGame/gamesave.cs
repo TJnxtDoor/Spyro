@@ -12,6 +12,7 @@ using System.Collections;
 public class GameData
 {
     public Vector3 playerPosition;
+    
     public float playerHealth;
     public List<string> inventoryItems;
     public int currentLevel;

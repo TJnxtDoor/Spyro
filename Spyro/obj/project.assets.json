@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/afzal/Documents/GitHub/correct-the-html-responsive/Spyro/Spyro/Spyro.csproj",
+      "projectUniqueName": "/Users/afzal/Documents/GitHub/correct-the-html-responsive/Spyro/Untitled/Spyro/Spyro.csproj",
       "projectName": "Spyro",
-      "projectPath": "/Users/afzal/Documents/GitHub/correct-the-html-responsive/Spyro/Spyro/Spyro.csproj",
+      "projectPath": "/Users/afzal/Documents/GitHub/correct-the-html-responsive/Spyro/Untitled/Spyro/Spyro.csproj",
       "packagesPath": "/Users/afzal/.nuget/packages/",
-      "outputPath": "/Users/afzal/Documents/GitHub/correct-the-html-responsive/Spyro/Spyro/obj/",
+      "outputPath": "/Users/afzal/Documents/GitHub/correct-the-html-responsive/Spyro/Untitled/Spyro/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/afzal/.nuget/NuGet/NuGet.Config"

@@ -7,6 +7,7 @@ public class GemCollectible : MonoBehaviour
     private int gemValue;
 
     public void SetValue(int value)
+    
     {
         gemValue = value;
         GetComponent<Renderer>().material.color = Color.HSVToRGB(
@@ -19,7 +20,7 @@ public class GemCollectible : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Instantiate(collectEffect, transform.position, Quaternion.identity);
-            GemProgressionSystem.Instance.A(ddGems(gemValue));
+            GemProgressionSystem.Instance.AAddGems(gemValue);
 
             Destroy(gameObject);
 
