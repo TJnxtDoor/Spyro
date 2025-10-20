@@ -1,13 +1,16 @@
 using UnityEngine;
+using System.Drawing;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Dynamic;
 public class Map : MonoBehaviour
 
 {
     [System.Serializable]
-    public class SpawnPoint
+    public class SpawnPoint // spawn point class
     {
         public Transform point;
         public bool isOccupied;
@@ -24,22 +27,22 @@ public class Map : MonoBehaviour
 
         // man im dead 💀
 
-        public void PlayerDies()
+        public void PlayerDies() // player dies  at  specific spawn point
         {
             isOccupied = false;
         }
 
-        public void PlayerSpawns()
+        public void PlayerSpawns() // player spawns at specific spawn point
         {
             isOccupied = true;
         }
     }
 
-    public List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
+    public List<SpawnPoint> spawnPoints = new List<SpawnPoint>(); //list of spawn points in map 
 
     public Transform GetRandomSpawnPoint()
     {
-        List<SpawnPoint> availablePoints = spawnPoints.FindAll(sp => !sp.isOccupied);
+        List<SpawnPoint> availablePoints = spawnPoints.FindAll(sp => !sp.isOccupied); // find all unoccupied spawn points
         if (availablePoints.Count == 0)
         {
             Debug.LogWarning("No available spawn points!");
@@ -59,7 +62,7 @@ public class Map : MonoBehaviour
             Player player = playerObj.GetComponent<Player>();
             if (player != null)
             {
-                player.SetSpawnPoint(spawnPoint);
+                player.SetSpawnPoint(spawnPoint); // sets spawn point for player
             }
             return player;
         }
@@ -68,10 +71,10 @@ public class Map : MonoBehaviour
 
     public Enemy SpawnEnemy(GameObject enemyPrefab)
     {
-        Transform spawnPoint = GetRandomSpawnPoint();
+        Transform spawnPoint = GetRandomSpawnPoint(); // random spawn point for enemy
         if (spawnPoint != null)
         {
-            GameObject enemyObj = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+            GameObject enemyObj = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation); // instantiate enemy at spawn point
             Enemy enemy = enemyObj.GetComponent<Enemy>();
             if (enemy != null)
             {
@@ -82,8 +85,45 @@ public class Map : MonoBehaviour
         return null;
     }
 
-    MapColors mapColors;
-    public MapColors MapColors => mapColors;
+    // Map Img
+    Bitmap mapImage = new Bitmap(); // bitmap for map image
+
+
+
+    // Placing Waypoints on Map
+    public class sWaypoint
+    {
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+        public string Name { get; set; }
+    }
+
+    List<sWaypoint> waypoints = new List<sWaypoint>(); // list of waypoints on map
+
+    // adding waypoint to map click event
+    public void Map_MouseClick(object sender, System.Windows.Forms.MouseEventArgs e)
+    {
+        // Convert mouse coordinates to latitude and longitude
+        double latitude = ConvertMouseYToLatitude(e.Y);
+        double longitude = ConvertMouseXToLongitude(e.X);
+
+        sWaypoint waypoint = new sWaypoint
+        {
+            Latitude = latitude,
+            Longitude = longitude,
+            Name = "Waypoint " + (waypoints.Count + 1)
+        };
+        waypoints.Add(waypoint);
+        // 
+    }
+
+
+    public void SetMapColors(MapColors colors)
+    {
+        mapColors = colors;
+        UpdateColors();
+    }
+    public MapColors MapColors => mapColors; // property to access map colors
 
     // A small fix to ensure mapColors is always initialized
     void Awake()
@@ -116,8 +156,6 @@ public class Map : MonoBehaviour
             }
         }
     }
-
-
 
     public void DiscoverMap()
     {

@@ -9,14 +9,14 @@ namespace WorldUI
         public Slider progressionSlider;
 
         // Resonsive Greass based on where player moves 
-        public GameObject[] worldTrees;
-        public float maxTreeScale = 1.5f;
-        public float minTreeScale = 0.8f;
-        public float scaleResponseSpeed = 2f;
-        public float scaleResponseProgression = 0f;
+        public GameObject[] worldTrees;// Array of tree GameObjects in the world
+        public float maxTreeScale = 1.5f; // Maximum scale for trees
+        public float minTreeScale = 0.8f; // Minimum scale for trees
+        public float scaleResponseSpeed = 2f; // Speed of scaling response
+        public float scaleResponseProgression = 0f; // Current progression for scaling
         [Header("Grass Settings")]
-        public GameObject grassParent;
-        public float grassBendAmount = 0.2f;
+        public GameObject grassParent; // Parent object containing all grass meshes
+        public float grassBendAmount = 0.2f; // Amount of bending effect
         public float grassRecoverySpeed = 4f;
         public float grassProgressionMultiplier = 1.4f;
         public Color healthyGrassColor = new Color(0.2f, 0.8f, 0.3f);
@@ -78,15 +78,15 @@ namespace WorldUI
                 UpdateTreeScales(currentProgression);
                 UpdateGrass(currentProgression);
             }
-
+                // updates tree scales
             void UpdateTreeScales(float progression)
             {
                 if (worldTrees == null || initialTreeScales == null) return;
-
+                    // Scale trees based on progression
                 for (int i = 0; i < worldTrees.Length; i++)
                 {
                     if (worldTrees[i] != null)
-                    {
+                    {       // Calculate new scale
                         float scaleFactor = Mathf.Lerp(minTreeScale, maxTreeScale, progression);
                         float individualVariation = 0.9f + 0.2f * Mathf.PerlinNoise(i * 10f, Time.time * 0.5f);
                         worldTrees[i].transform.localScale = initialTreeScales[i] * scaleFactor * individualVariation;
@@ -131,7 +131,7 @@ namespace WorldUI
                             bendDirection.z * influence * grassBendAmount,
                             influence * grassRecoverySpeed
                         );
-
+                            // applies bending effect
                         mat.SetVector("_BendRotation", bend);
                         void Update()
                         {

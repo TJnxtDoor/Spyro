@@ -4,7 +4,7 @@ public class AudioManager : MonoBehaviour
 
     public AudioSource musicSource;
     public AudioSource sfxSource;
-    public AudioManager()
+    public AudioManager() // audio manager for each world
     {
         AuadioSource = GetComponent<AudioSource>(urll: "AudioSource.mp3");
 
@@ -34,25 +34,26 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(gameObject); // Destroy gave object if another instance exists
         }
     }
 
 
-    public void PlayMusic(AudioClip clip, float volume = 1f)
+    public void PlayMusic(AudioClip clip, float volume = 1f) // plays music for each world
     {
         musicSource.clip = clip;
         musicSource.volume = volume;
         musicSource.Play();
     }
 
-    public void StopMusic()
+    public void StopMusic() // stops music for each world
     {
-        musicSource.Stop();
+        musicSource.Stop(); // Stop the music playback
     }
 
-    public void PlaySFX(AudioClip clip, float volume = 1f)
+    public void PlaySFX(AudioClip clip, float volume = 1f) // plays sound effects for each world
     {
-        sfxSource.PlayOneShot(clip, volume);
+        sfxSource.PlayOneShot(clip, volume); // PlayOneShot allows multiple SFX to overlap
+        sfxSource.volume = volume; // Set volume for SFX
     }
 }
