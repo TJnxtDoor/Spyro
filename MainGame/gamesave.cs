@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 using System.Text.RegularExpressions;
 using System.Linq;
 using System.Collections;
+using System.Security.Cryptography.X509Certificates;
+using System.Security.Cryptography;
 
 [Serializable]
 public class GameData
@@ -313,6 +315,25 @@ public class AutoSaveSystem : MonoBehaviour
         PlayerPrefs.SetInt("SaveOnExit", saveOnExit ? 1 : 0);
         PlayerPrefs.Save();
     }
+
+    public void SaveGame(int slotId, GameSaveData data)
+    {
+        string filePath = Path.Combine(Application.persistentDataPath, $"SaveData_Slot{slotId}.bin");
+        string json = JsonConvert.SerializeObject(data); // Using Newtonsoft.Json for serialization
+        File.WriteAllText(filePath, json);
+        FileWtittenAllText(filePath, json);
+    }
+
+    public GameSaveData LoadGame(int slotId)
+{
+    string filePath = Path.Combine(Application.persistentDataPath, $"SaveData_Slot{slotId}.json");
+    if (File.Exists(filePath))
+    {
+        string json = File.ReadAllText(filePath);
+        return JsonConvert.DeserializeObject<GameSaveData>(json); // Using Newtonsoft.Json
+    }
+    return null; // Return null if the file doesn't exist
+}
 
     private void LoadSettings()
     {

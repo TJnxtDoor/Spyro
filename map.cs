@@ -1,14 +1,8 @@
 using UnityEngine;
-using System.Drawing;
 using System.Collections.Generic;
-using UnityEngine.UI;
 using Random = UnityEngine.Random;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Dynamic;
-using System.ComponentModel.DataAnnotations;
-public class Map : MonoBehaviour
 
+public class Map : MonoBehaviour
 {
     [System.Serializable]
     public class SpawnPoint // spawn point class
@@ -28,7 +22,7 @@ public class Map : MonoBehaviour
 
         // man im dead 💀
 
-        public void PlayerDies() // player dies  at  specific spawn point
+        public void PlayerDies() // player dies at specific spawn point
         {
             isOccupied = false;
         }
@@ -37,7 +31,7 @@ public class Map : MonoBehaviour
         {
             isOccupied = true;
         }
-    }
+    } // Moved the closing brace here
 
     public List<SpawnPoint> spawnPoints = new List<SpawnPoint>(); //list of spawn points in map 
 
@@ -87,11 +81,16 @@ public class Map : MonoBehaviour
     }
 
     // Map Img
-    Bitmap mapImage = new Bitmap(); // bitmap for map image
-
-
-
     List<sWaypoint> waypoints = new List<sWaypoint>(); // list of waypoints on map
+
+    // You'll need to define sWaypoint class
+    [System.Serializable]
+    public class sWaypoint
+    {
+        public double Latitude;
+        public double Longitude;
+        public string Name;
+    }
 
     // adding waypoint to map click event
     public void Map_MouseClick(object sender, System.Windows.Forms.MouseEventArgs e)
@@ -109,72 +108,82 @@ public class Map : MonoBehaviour
         waypoints.Add(waypoint);
     }
 
-
-   
-}
-
+    // You need to implement these conversion methods
+    private double ConvertMouseYToLatitude(int y)
     {
-        
+        // Implement your conversion logic
+        return 0.0;
+    }
 
-        public void SetMapColors(MapColors colors)
-        {
-            mapColors = colors;
-            UpdateColors();
-        }
-        public MapColors MapColors => mapColors; // property to access map colors
-
-        // A small fix to ensure mapColors is always initialized
-        void Awake()
-        {
-            if (mapColors == null)
-            {
-                mapColors = new MapColors();
-            }
-        }
-
-        void UpdateColors()
-        {
-            //checks if map is undiscovered
-            if (mapColors.isUndiscovered)
-            {
-                //set colors to undiscovered colors
-                RenderSettings.fogColor = mapColors.undiscoveredFogColor;
-                if (Camera.main != null)
-                {
-                    Camera.main.backgroundColor = mapColors.undiscoveredBackgroundColor;
-                }
-            }
-            else
-            {
-                //set colors to discovered colors
-                RenderSettings.fogColor = mapColors.discoveredFogColor;
-                if (Camera.main != null)
-                {
-                    Camera.main.backgroundColor = mapColors.discoveredBackgroundColor;
-                }
-            }
-        }
-
-        public void DiscoverMap()
-{
-    if (mapColors != null)
+    private double ConvertMouseXToLongitude(int x)
     {
-        mapColors.isUndiscovered = false;
+        // Implement your conversion logic
+        return 0.0;
+    }
+
+    // Map Colors section
+    public MapColors mapColors;
+
+    public void SetMapColors(MapColors colors)
+    {
+        mapColors = colors;
         UpdateColors();
     }
-    else
+
+    public MapColors MapColors => mapColors; // property to access map colors
+
+    // A small fix to ensure mapColors is always initialized
+    void Awake()
     {
-        Debug.LogWarning("MapColors is not initialized.");
+        if (mapColors == null)
+        {
+            mapColors = new MapColors();
+        }
+    }
+
+    void UpdateColors()
+    {
+        //checks if map is undiscovered
+        if (mapColors.isUndiscovered)
+        {
+            //set colors to undiscovered colors
+            RenderSettings.fogColor = mapColors.undiscoveredFogColor;
+            if (Camera.main != null)
+            {
+                Camera.main.backgroundColor = mapColors.undiscoveredBackgroundColor;
+            }
+        }
+        else
+        {
+            //set colors to discovered colors
+            RenderSettings.fogColor = mapColors.discoveredFogColor;
+            if (Camera.main != null)
+            {
+                Camera.main.backgroundColor = mapColors.discoveredBackgroundColor;
+            }
+        }
+    }
+
+    public void DiscoverMap()
+    {
+        if (mapColors != null)
+        {
+            mapColors.isUndiscovered = false;
+            UpdateColors();
+        }
+        else
+        {
+            Debug.LogWarning("MapColors is not initialized.");
+        }
     }
 }
-    }
 
-
+[System.Serializable]
 public class MapColors
 {
     public bool isUndiscovered = true;
     public Color undiscoveredFogColor = Color.black;
     public Color discoveredFogColor = Color.gray;
     public Color undiscoveredBackgroundColor = Color.black;
-    public Color discoveredBackgroundColor = Color;
+    public Color discoveredBackgroundColor = Color.blue; // Fixed missing color value
 }
