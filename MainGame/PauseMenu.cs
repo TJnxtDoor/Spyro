@@ -9,6 +9,8 @@ namespace Spyro.MainGame
         public GameObject pauseMenuUI;
         public AudioSource backgroundMusic;
         public Slider VolumeSlider;
+        
+
 
         void Start()
         {
@@ -58,6 +60,16 @@ namespace Spyro.MainGame
         public void QuitGame()
         {
             Application.Quit();
+        }
+
+
+        public void MainMenuMusic()
+        {
+            backgroundMusic.repeat = true;
+            backgroundMusic.Play();
+            backgroundMusic.volume = PlayerPrefs.GetFloat("MusicVolume", 0.6f);
+            backgroundMusic.loop = true;
+            
         }
     }
 }

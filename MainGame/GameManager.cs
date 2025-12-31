@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public int health = 100;
     public UnityEngine.UI.Text scoreText;
     public UnityEngine.UI.Text healthText;
+    public int Addscore = 0;
+    
 
     void Awake()
     {

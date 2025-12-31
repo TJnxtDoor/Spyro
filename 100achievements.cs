@@ -107,6 +107,16 @@ public static class CompletionAchievements
             15000
         );
 
+
+         AchievementSystem.Instance.CreateAchievement(
+            "Complete_Tutorial", 
+            "Tutorial Conqueror", 
+            "Complete the tutorial",
+            AchievementType.TutorialCompletion, 
+            1,
+            100
+        );
+
         AchievementSystem.Instance.CreateAchievement(
             "ultimate_spyro", 
             "Ultimate Spyro", 
