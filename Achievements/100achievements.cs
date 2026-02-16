@@ -114,5 +114,6 @@ public static class CompletionAchievements
             1,
             50000
         );
+
     }
 }

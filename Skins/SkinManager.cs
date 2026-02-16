@@ -64,17 +64,17 @@ public class SkinManager : MonoBehaviour
             currentSkinID = skinID;
             ApplySkin(skinID);
         }
-    }
+        SaveSkinProgress ();}
 
-    private void ApplySkin(string skinID)
-    {
-        DragonSkin skin = allSkins.Find(s => s.skinID == skinID);
-        if (skin != null)
+     public void ApplySkin(string skinID)
         {
-            playerRenderer.material = skin.skinMaterial;
-            playerRenderer.material.mainTexture = skin.skinTexture;
+            DragonSkin skin = allSkins.Find(s => s.skinID == skinID);
+            if (skin != null && skin.isUnlocked)
+            {
+                playerRenderer.material = skin.skinMaterial;
+                playerRenderer.material.mainTexture = skin.skinTexture;
+            }
         }
-    }
 
     private void SaveSkinProgress()
     {
@@ -99,4 +99,20 @@ public class SkinManager : MonoBehaviour
     {
         return allSkins.FindAll(s => s.isUnlocked);
     }
+
+    public DragonSkin GetEquippedSkin()
+    {
+        return allSkins.Find(s => s.isEquipped);
+    }
+
+    [ContextMenu("Unlock All Skins")]
+    private void UnlockAllSkins()
+    {
+        foreach (DragonSkin skin in allSkins)
+        {
+            skin.isUnlocked = true;
+        }
+        SaveSkinProgress();
+    }
+                  
 }

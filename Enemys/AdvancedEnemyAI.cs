@@ -13,10 +13,10 @@ public class EnemyAI : MonoBehaviour
 
 
     void OnCollisionEnter(Collision collision)
-{
+        {
         if (collision.gameObject.CompareTag("Player"))
-    {
-        GameManger.Istance.TakeDamage(5);
-    }
-}
+        {
+            GameManager.Instance.TakeDamage(5);
+        }
+        }
 }

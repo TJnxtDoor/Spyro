@@ -34,6 +34,10 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+                if (collision.gameOObject.CompareTag("Enemy"))
+                {
+                    // Handle enemy collision (e.g., reduce health, respawn, etc.)
+                }
         }
     }
 }

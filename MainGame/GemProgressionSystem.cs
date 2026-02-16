@@ -1,9 +1,6 @@
 // GemProgressionSystem.cs
 using UnityEngine;
-
-
-
-
+using System.Collections.Generic;
 public class GemProgressionSystem : MonoBehaviour;
 // GemProgressionSystem.cs updates
 public class GemProgressionSystem : MonoBehaviour
@@ -27,9 +24,7 @@ public class GemProgressionSystem : MonoBehaviour
     }
 
 
-
     [Header("World Settings")]
-
 
 
     public int currentWorld = 1;

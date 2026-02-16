@@ -4,7 +4,6 @@ public class SecretAreaMawnager : MonoBehaviour
     public List<SecretArea> secrecAreas = new List<SecretArea>();
     public int TotalSecrets => secrecAreas.Count;
     public int FoundSecrets {get; private set; }
-
     public void RegisterSecretsFound()
     {
         FoundSecrets++;
@@ -14,3 +13,5 @@ public class SecretAreaMawnager : MonoBehaviour
         }
     }
 }
+
+
