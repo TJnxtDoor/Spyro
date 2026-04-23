@@ -1,0 +1,6 @@
+C:\Users\Tj\Documents\GitHub\Spyro\Spyro\obj\Debug\netstandard2.1\Spyro.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Tj\Documents\GitHub\Spyro\Spyro\obj\Debug\netstandard2.1\Spyro.AssemblyInfoInputs.cache
+C:\Users\Tj\Documents\GitHub\Spyro\Spyro\obj\Debug\netstandard2.1\Spyro.AssemblyInfo.cs
+C:\Users\Tj\Documents\GitHub\Spyro\Spyro\obj\Debug\netstandard2.1\Spyro.csproj.CoreCompileInputs.cache
+C:\Users\Tj\Documents\GitHub\Spyro\Spyro\obj\Debug\netstandard2.1\Spyro.sourcelink.json
+C:\Users\Tj\Documents\GitHub\Spyro\Spyro\obj\Debug\netstandard2.1\Spyro.csproj.AssemblyReference.cache
