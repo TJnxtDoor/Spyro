@@ -1,4 +1,3 @@
-// GemProgressionSystem.cs
 using UnityEngine;
 using System.Collections.Generic;
 public class GemProgressionSystem : MonoBehaviour;
@@ -26,14 +25,14 @@ public class GemProgressionSystem : MonoBehaviour
 
     [Header("World Settings")]
 
+ 
+    private int currentWorld = 1;
+    private int maxWorlds = 100;
+    private int gemsToNextWorld = 1000;
 
-    public int currentWorld = 1;
-    public int maxWorlds = 100;
-    public int gemsToNextWorld = 1000;
-
-    public GameObject gemPrefab;
-    public int minGemsPerWorld = 10;
-    public int maxGemsPerWorld = 25;
+    private GameObject gemPrefab;
+    private int minGemsPerWorld = 10;
+    private int maxGemsPerWorld = 25;
 
     private int collectedThisWorld;
 

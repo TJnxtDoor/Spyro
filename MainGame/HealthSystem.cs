@@ -14,6 +14,7 @@ public class HealthSystem : MonoBehaviour
     {
         CurrentHealth = Mathf.Clamp(CurrentHealth - damage, 0, maxHealth);
         if (CurrentHealth <= 0) Die();
+        
     }
 
 
