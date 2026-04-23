@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class GemCollectible : MonoBehaviour
 {
+    public static System.Action<int> OnGemCollected;
+
     [SerializeField] private ParticleSystem collectEffect;
     private int gemValue;
 
@@ -20,18 +22,10 @@ public class GemCollectible : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Instantiate(collectEffect, transform.position, Quaternion.identity);
-            GemProgressionSystem.Instance.AAddGems(gemValue);
+            GemProgressionSystem.Instance.AddGems(gemValue);
+            OnGemCollected?.Invoke(gemValue);
 
             Destroy(gameObject);
-
-            if (gamesave is null)
-            {
-                gamesave = new GameObject("gamesave");
-                gamesave.AddComponent<gamesave>();
-            }
-            gamesave.GetComponent<gamesave>().AddGem(gemValue);
-            gamesave.GetComponent<gamesave>().Save();
-            
         }
     }
 }

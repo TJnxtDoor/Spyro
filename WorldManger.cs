@@ -4,7 +4,7 @@ public class WorldManager : MonoBehaviour
 
 {
     public List<World> worlds = new List<World>();
-    public List TotalGemnsInGame { get; private set; }
+    public int TotalGemsInGame { get; private set; }
 
     public struct World{
          public int worldID;
@@ -14,13 +14,21 @@ public class WorldManager : MonoBehaviour
          public int completed;
     }
 
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+        CalculateTotalGems();
+    }
+
     public void CalculateTotalGems()
     {
-        TotalGemnsInGame = 0;
+        int total = 0;
 
         foreach(World world in worlds)
         {
-            TotalGemnsInGame += world.totalGems;
+            total += world.totalGems;
         }
+
+        TotalGemsInGame = total;
     }
 }

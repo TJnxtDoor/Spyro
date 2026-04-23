@@ -4,18 +4,18 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 10f;
     public float jumpForce = 5f;
-    private RigiBody rb;
+    private Rigidbody rb;
     private bool isGrounded;
 
     void Start() {
-        rb = GetComponment<RigiBody>();
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
         // Movement
         float horizontal  = Input.GetAxis("horizontal");
-        float vertical = input.GetAxis("vertical");
+        float vertical = Input.GetAxis("vertical");
         Vector3 movement = new Vector3(horizontal, 0 , vertical) * moveSpeed * Time.deltaTime;
 
         transform.Translate(movement);
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
         //Jump
         if(Input.GetButtonDown("Jump") && isGrounded) 
         {
-            rb.AddForce(Vector3.up * jumpForce. ForceMode.Impulse);
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isGrounded = false;
         }
 
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
-                if (collision.gameOObject.CompareTag("Enemy"))
+                if (collision.gameObject.CompareTag("Enemy"))
                 {
                     // Handle enemy collision (e.g., reduce health, respawn, etc.)
                 }

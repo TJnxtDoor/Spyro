@@ -1,8 +1,8 @@
-public class SecretAreaMawnager : MonoBehaviour
+public class SecretAreaManager : MonoBehaviour
 {
-    public static SecretAreaMawnager Instance;
-    public List<SecretArea> secrecAreas = new List<SecretArea>();
-    public int TotalSecrets => secrecAreas.Count;
+    public static SecretAreaManager Instance;
+    public List<SecretArea> secretAreas = new List<SecretArea>();
+    public int TotalSecrets => secretAreas.Count;
     public int FoundSecrets {get; private set; }
     public void RegisterSecretsFound()
     {
@@ -13,5 +13,3 @@ public class SecretAreaMawnager : MonoBehaviour
         }
     }
 }
-
-

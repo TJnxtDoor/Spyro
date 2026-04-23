@@ -17,14 +17,13 @@ public class GameManager : MonoBehaviour
 
     public void AddScore(int value)
     {
-        AddScore += value;
-        scoreText = "Gems" + AddScore;
+        score += value;
+        if (scoreText != null) scoreText.text = "Gems: " + score;
     }
 
     public void TakeDamage(int damage)
     {
         health -= damage;
-        healthText = "Health" + health;
+        if (healthText != null) healthText.text = "Health: " + health;
     }
-
 }
