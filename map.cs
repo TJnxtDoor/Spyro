@@ -93,11 +93,11 @@ public class Map : MonoBehaviour
     }
 
     // adding waypoint to map click event
-    public void Map_MouseClick(object sender, System.Windows.Forms.MouseEventArgs e)
+    public void Map_MouseClick(object sender, Vector2 mousePosition)
     {
         // Convert mouse coordinates to latitude and longitude
-        double latitude = ConvertMouseYToLatitude(e.Y);
-        double longitude = ConvertMouseXToLongitude(e.X);
+        double latitude = ConvertMouseYToLatitude((int)mousePosition.y);
+        double longitude = ConvertMouseXToLongitude((int)mousePosition.x);
 
         sWaypoint waypoint = new sWaypoint
         {

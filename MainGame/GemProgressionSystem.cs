@@ -1,40 +1,26 @@
 using UnityEngine;
 using System.Collections.Generic;
-public class GemProgressionSystem : MonoBehaviour;
-// GemProgressionSystem.cs updates
+using Random = UnityEngine.Random;
+
 public class GemProgressionSystem : MonoBehaviour
 {
-    private int CalculateGemValue()
-    {
-        DifficultySettings diff = GameManager.Instance.difficultySettings;
-        int baseValue = Mathf.RoundToInt((100 + (currentWorld - 1) * 1000) * diff.gemValueMultiplier);
-        return Random.Range(baseValue, Mathf.Min(baseValue + 1000, 100000));
-    }
-
-    private void CheckWorldProgression()
-    {
-        int required = Mathf.RoundToInt(gemsToNextWorld *
-            GameManager.Instance.difficultySettings.gemRequirementMultiplier);
-
-        if (collectedThisWorld >= required)
-        {
-            // Progress to next world
-        }
-    }
-
+    public static GemProgressionSystem Instance { get; private set; }
 
     [Header("World Settings")]
-
- 
-    private int currentWorld = 1;
+    public int currentWorld = 1;
     private int maxWorlds = 100;
-    private int gemsToNextWorld = 1000;
+    public int gemsToNextWorld = 1000;
 
     private GameObject gemPrefab;
     private int minGemsPerWorld = 10;
     private int maxGemsPerWorld = 25;
 
-    private int collectedThisWorld;
+    public int collectedThisWorld;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -78,14 +64,22 @@ public class GemProgressionSystem : MonoBehaviour
 
     private int CalculateGemValue()
     {
-        int baseValue = 100 + (currentWorld - 1) * 1000;
+        float valueMultiplier = GameManager.Instance != null && GameManager.Instance.difficultySettings != null
+            ? GameManager.Instance.difficultySettings.gemValueMultiplier
+            : 1f;
+        int baseValue = Mathf.RoundToInt((100 + (currentWorld - 1) * 1000) * valueMultiplier);
         int maxValue = Mathf.Min(baseValue + 1000, 100000);
         return Random.Range(baseValue, maxValue + 1);
     }
 
     private void CheckWorldProgression()
     {
-        if (collectedThisWorld >= gemsToNextWorld)
+        float requirementMultiplier = GameManager.Instance != null && GameManager.Instance.difficultySettings != null
+            ? GameManager.Instance.difficultySettings.gemRequirementMultiplier
+            : 1f;
+        int required = Mathf.RoundToInt(gemsToNextWorld * requirementMultiplier);
+
+        if (collectedThisWorld >= required)
         {
             currentWorld = Mathf.Min(currentWorld + 1, maxWorlds);
             collectedThisWorld = 0;

@@ -64,7 +64,7 @@ public class EnemyAI : MonoBehaviour
         {
             if (Time.time >= lastAttackTime + attackCooldown)
             {
-                GameManager.Instance.TakeDamage(weaponDamage);
+                GameManager.Instance.TakeDamage(Mathf.RoundToInt(weaponDamage));
                 lastAttackTime = Time.time;
             }
         }

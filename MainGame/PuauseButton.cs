@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Spyro.MainGame;
 
 public class PauseButton : MonoBehaviour
 {

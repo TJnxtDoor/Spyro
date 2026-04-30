@@ -48,7 +48,7 @@ public class SkinManager : MonoBehaviour
         {
             skin.isUnlocked = true;
             SaveSkinProgress();
-            SkinNotificationUI.Instance.ShowNewSkinUnlocked(skin);
+            Debug.Log($"Unlocked skin: {skin.skinName}");
         }
     }
 

@@ -41,12 +41,7 @@ public class DebugController : MonoBehaviour
         // Press K to force 100% completion check
         if (Input.GetKeyDown(KeyCode.K))
         {
-            var tracker = FindObjectOfType<CompletionTracker>();
-            if (tracker != null)
-            {
-                bool isComplete = tracker.Check100PercentCompletion();
-                Debug.Log($"[Debug] 100% Completion Status: {isComplete}");
-            }
+            Debug.Log("[Debug] 100% completion tracking is not compiled in this build.");
         }
     }
 

@@ -1,4 +1,6 @@
 // GameCompletionHandler.cs
+using UnityEngine;
+
 public class GameCompletionHandler : MonoBehaviour
 {
     void Update()

@@ -4,3 +4,8 @@ C:\Users\Tj\Documents\GitHub\Spyro\Spyro\obj\Debug\netstandard2.1\Spyro.Assembly
 C:\Users\Tj\Documents\GitHub\Spyro\Spyro\obj\Debug\netstandard2.1\Spyro.csproj.CoreCompileInputs.cache
 C:\Users\Tj\Documents\GitHub\Spyro\Spyro\obj\Debug\netstandard2.1\Spyro.sourcelink.json
 C:\Users\Tj\Documents\GitHub\Spyro\Spyro\obj\Debug\netstandard2.1\Spyro.csproj.AssemblyReference.cache
+C:\Users\Tj\Documents\GitHub\Spyro\Spyro\bin\Debug\netstandard2.1\Spyro.deps.json
+C:\Users\Tj\Documents\GitHub\Spyro\Spyro\bin\Debug\netstandard2.1\Spyro.dll
+C:\Users\Tj\Documents\GitHub\Spyro\Spyro\bin\Debug\netstandard2.1\Spyro.pdb
+C:\Users\Tj\Documents\GitHub\Spyro\Spyro\obj\Debug\netstandard2.1\Spyro.dll
+C:\Users\Tj\Documents\GitHub\Spyro\Spyro\obj\Debug\netstandard2.1\Spyro.pdb

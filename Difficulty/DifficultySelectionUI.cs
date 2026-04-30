@@ -13,11 +13,11 @@ public class DifficultySelectorUI : MonoBehaviour
         {
             int index = i;
             difficultyButtons[i].onClick.AddListener(() => 
-                SetDifficulty((DifficultySettings.DifficultyLevel)index));
+                SetDifficulty((DifficultySettings.DifficultyLevels)index));
         }
     }
 
-    private void SetDifficulty(DifficultySettings.DifficultyLevel level)
+    private void SetDifficulty(DifficultySettings.DifficultyLevels level)
     {
         difficultySettings.SetDifficulty(level);
         GameManager.Instance.difficultySettings = difficultySettings;
@@ -36,9 +36,9 @@ public class DifficultySelectorUI : MonoBehaviour
     //Unlock Achievements based on difficulty
     public void CheckDifficultyAchievements()
         {
-            if (difficultySettings.currentDifficulty == DifficultySettings.DifficultyLevel.ExtremelyDifficult)
+            if (difficultySettings.currentDifficulty == DifficultySettings.DifficultyLevels.ExtremelyDifficult)
             {
-                Steamworks.SteamUserStats.UnlockAchievement("EXTREME_CHALLENGER");
+                AchievementSystem.Instance?.UnlockAchievement("EXTREME_CHALLENGER");
             }
         }
 }

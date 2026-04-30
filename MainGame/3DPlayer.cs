@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Linq;
 
 public class Player3DController : MonoBehaviour
 {
@@ -73,31 +74,44 @@ public class Player3DController : MonoBehaviour
     {
         if (instantiatedModel == null) return;
 
-        Type[] components = new Type[]
+        string[] componentNames = new string[]
         {
-            typeof(PlayerMovement),
-            typeof(PlayerHealth),
-            typeof(PlayerScore),
-            typeof(PlayerAbilities),
-            typeof(PlayerInventory),
-            typeof(PlayerCombat),
-            typeof(PlayerAnimations),
-            typeof(PlayerAudio),
-            typeof(PlayerCamera),
-            typeof(PlayerInput),
-            typeof(PlayerSaveLoad),
-            typeof(PlayerDebug),
-            typeof(PlayerController),
-            typeof(PlayerTalking)
+            "PlayerMovement",
+            "PlayerHealth",
+            "PlayerScore",
+            "PlayerAbilities",
+            "PlayerInventory",
+            "PlayerCombat",
+            "PlayerAnimations",
+            "PlayerAudio",
+            "PlayerCamera",
+            "PlayerInput",
+            "PlayerSaveLoad",
+            "PlayerDebug",
+            "PlayerController",
+            "PlayerTalking"
         };
 
-        foreach (Type component in components)
+        foreach (string componentName in componentNames)
         {
+            Type component = FindComponentType(componentName);
+            if (component == null || !typeof(Component).IsAssignableFrom(component))
+            {
+                continue;
+            }
+
             if (instantiatedModel.GetComponent(component) == null)
             {
                 instantiatedModel.AddComponent(component);
             }
         }
+    }
+
+    private static Type FindComponentType(string typeName)
+    {
+        return AppDomain.CurrentDomain.GetAssemblies()
+            .Select(assembly => assembly.GetType(typeName))
+            .FirstOrDefault(type => type != null);
     }
 
 
@@ -106,22 +120,16 @@ public class Player3DController : MonoBehaviour
     {
         if (GameManager.Instance == null) return;
 
-        GameManager.Instance.OnScoreChanged += HandleScoreChanged;
-        GameManager.Instance.OnHealthChanged += HandleHealthChanged;
-        GameManager.Instance.OnGamePaused += HandleGamePaused;
-        GameManager.Instance.OnGameResumed += HandleGameResumed;
-        GameManager.Instance.OnGameQuit += HandleGameQuit;
+        GameManager.Instance.ScoreChanged += HandleScoreChanged;
+        GameManager.Instance.HealthChanged += HandleHealthChanged;
     }
 
     private void UnsubscribeFromEvents()
     {
         if (GameManager.Instance == null) return;
 
-        GameManager.Instance.OnScoreChanged -= HandleScoreChanged;
-        GameManager.Instance.OnHealthChanged -= HandleHealthChanged;
-        GameManager.Instance.OnGamePaused -= HandleGamePaused;
-        GameManager.Instance.OnGameResumed -= HandleGameResumed;
-        GameManager.Instance.OnGameQuit -= HandleGameQuit;
+        GameManager.Instance.ScoreChanged -= HandleScoreChanged;
+        GameManager.Instance.HealthChanged -= HandleHealthChanged;
     }
 
     private void HandleScoreChanged()
@@ -155,7 +163,7 @@ public class Player3DController : MonoBehaviour
     {
         if (scoreText != null && GameManager.Instance != null)
         {
-            scoreText.text = "Score: " + GameManager.Instance.Score;
+            scoreText.text = "Score: " + GameManager.Instance.score;
         }
     }
 
@@ -163,7 +171,7 @@ public class Player3DController : MonoBehaviour
     {
         if (healthText != null && GameManager.Instance != null)
         {
-            healthText.text = "Health: " + GameManager.Instance.Health;
+            healthText.text = "Health: " + GameManager.Instance.health;
         }
     }
 
@@ -219,4 +227,4 @@ public class Player3DController : MonoBehaviour
         }
     }
 
-};
+}

@@ -1,0 +1,37 @@
+# Build output
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+
+# Unity generated folders
+Library/
+Temp/
+Logs/
+UserSettings/
+MemoryCaptures/
+Recordings/
+
+# Unity generated files
+*.csproj
+*.sln
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Keep the hand-written SDK solution/projects in this repo
+!Spyro.sln
+!Spyro/Spyro.csproj
+!Spyro.Runner/Spyro.Runner.csproj

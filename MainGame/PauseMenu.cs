@@ -65,7 +65,6 @@ namespace Spyro.MainGame
 
         public void MainMenuMusic()
         {
-            backgroundMusic.repeat = true;
             backgroundMusic.Play();
             backgroundMusic.volume = PlayerPrefs.GetFloat("MusicVolume", 0.6f);
             backgroundMusic.loop = true;

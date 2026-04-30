@@ -1,10 +1,17 @@
 //Key 100% Completion Requirements:
+using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class WorldManager : MonoBehaviour
 
 {
+    public static WorldManager Instance { get; private set; }
+    public static event Action<int> OnWorldCompleted;
+
     public List<World> worlds = new List<World>();
     public int TotalGemsInGame { get; private set; }
+    public int TotalWorlds => worlds.Count;
 
     public struct World{
          public int worldID;
@@ -30,5 +37,10 @@ public class WorldManager : MonoBehaviour
         }
 
         TotalGemsInGame = total;
+    }
+
+    public void CompleteWorld(int worldID)
+    {
+        OnWorldCompleted?.Invoke(worldID);
     }
 }

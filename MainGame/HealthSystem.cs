@@ -25,18 +25,12 @@ public class HealthSystem : MonoBehaviour
     }
 
     public GameObject projectilePrefab;
+    public Transform player;
 
     private void ShootProjectile()
     {
-        GameObject projectile = Instantiate(projectilePrefab, transform.position + Vector3.up, Quaternion.identity);
-        Vector3 direction = (player.position - transform.position).normalized;
-        projectile.GetComponent<Rigidbody>().velocity = direction * 20f;
-    }
+        if (projectilePrefab == null || player == null) return;
 
-    public GameObject projectilePrefab;
-
-    private void ShootProjectile()
-    {
         GameObject projectile = Instantiate(projectilePrefab, transform.position + Vector3.up, Quaternion.identity);
         Vector3 direction = (player.position - transform.position).normalized;
         projectile.GetComponent<Rigidbody>().velocity = direction * 20f;

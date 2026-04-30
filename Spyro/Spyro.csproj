@@ -5,6 +5,7 @@
     <LangVersion>12.0</LangVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,7 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\**\*.cs" />
+    <Compile Include="..\**\*.cs"
+             Exclude="..\Spyro\obj\**\*.cs;..\Spyro\bin\**\*.cs;..\Spyro.Runner\**\*.cs;..\Achievements\**\*.cs;..\100achievements.cs;..\Achievements.cs;..\Skins\EnemyAI.cs;..\Skins\SkinParticalSkin.cs;..\MainGame\SmokeSparkSettings.cs;..\Footsteeps\Footsteps.cs;..\Enemys\AdvancedEnemyAI.cs;..\Worlds\WorldUI.cs;..\MainGame\gamesave.cs;..\MainGame\GameCompleteHandler.cs" />
   </ItemGroup>
 
 </Project>
