@@ -35,3 +35,5 @@ Recordings/
 !Spyro.sln
 !Spyro/Spyro.csproj
 !Spyro.Runner/Spyro.Runner.csproj
+
+.fake

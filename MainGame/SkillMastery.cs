@@ -4,7 +4,7 @@ using System.Linq;
 
 public class SkillMastery : MonoBehaviour
 {
-    public static SkillMastery Instance { get; private set; }
+    public static SkillMastery Instance { get; private set; } = null!;
 
     public List<Skill> skills = new List<Skill>();
 

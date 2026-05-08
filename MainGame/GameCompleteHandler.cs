@@ -1,7 +1,7 @@
-// GameCompletionHandler.cs
+// GameCompleteHandler.cs
 using UnityEngine;
 
-public class GameCompletionHandler : MonoBehaviour
+public class GameCompleteHandler : MonoBehaviour
 {
     void Update()
     {
